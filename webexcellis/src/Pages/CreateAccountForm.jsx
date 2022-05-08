@@ -2,6 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../App";
 import { signUpUser, updateUser } from "../async/user.async";
+import HelpCircle from "../images/help-circle.svg";
+import Eye from "../images/eye.svg";
+import EyeOff from "../images/eye-off.svg";
+import { Popover, OverlayTrigger } from "react-bootstrap";
 
 const CreateAccountForm = () => {
   const { email, setEmail, dataList } = useContext(AppContext);
@@ -10,6 +14,7 @@ const CreateAccountForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
 
   useEffect(() => {
     let currentData = dataList?.filter((item) => item.id === id)[0];
@@ -78,20 +83,26 @@ const CreateAccountForm = () => {
                 <div className="form-group">
                   <div className="form-intro-box d-flex align-items-center">
                     <label htmlFor="password">Password</label>
-                    <a
-                      tabIndex="0"
-                      className="help-popover ml-2"
-                      data-container="body"
-                      data-toggle="popover"
-                      data-placement="top"
-                      data-content="Lorem ipsum dolor sit amet, consectetur adipiscing"
+
+                    <OverlayTrigger
+                      trigger="click"
+                      placement="top"
+                      overlay={
+                        <Popover id="popover-positioned-top" placement="top">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                        </Popover>
+                      }
                     >
-                      <img src="include/images/help-circle.svg" alt="" />
-                    </a>
+                      <img
+                        src={HelpCircle}
+                        alt="help"
+                        style={{ cursor: "pointer", marginLeft: "10px" }}
+                      />
+                    </OverlayTrigger>
                   </div>
                   <div className="input-group">
                     <input
-                      type="password"
+                      type={passwordVisibility ? "text" : "password"}
                       name="your_pass"
                       id="password-field"
                       className="form-control"
@@ -100,11 +111,29 @@ const CreateAccountForm = () => {
                     />
                     <span>
                       <i className="toggle-password" toggle="#password-field">
-                        <span className="show">
-                          <img src="include/images/eye.svg" alt="" />
+                        <span
+                          // className="show"
+                          style={{ display: passwordVisibility ? "none" : "" }}
+                        >
+                          <img
+                            src={Eye}
+                            alt="show-password"
+                            onClick={() =>
+                              setPasswordVisibility(!passwordVisibility)
+                            }
+                          />
                         </span>
-                        <span className="hide">
-                          <img src="include/images/eye-off.svg" alt="" />
+                        <span
+                          // className="hide"
+                          style={{ display: passwordVisibility ? "" : "none" }}
+                        >
+                          <img
+                            src={EyeOff}
+                            alt="hide-password"
+                            onClick={() =>
+                              setPasswordVisibility(!passwordVisibility)
+                            }
+                          />
                         </span>
                       </i>
                     </span>
@@ -112,9 +141,7 @@ const CreateAccountForm = () => {
                 </div>
               </div>
               <div className="member-btn" onClick={submitHandler}>
-                <a href="#!" className="btn btn-default btn-lg btn-block">
-                  Next
-                </a>
+                <a className="btn btn-default btn-lg btn-block">Next</a>
               </div>
             </form>
           </div>
