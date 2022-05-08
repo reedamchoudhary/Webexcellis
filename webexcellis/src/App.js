@@ -14,11 +14,11 @@ export const AppContext = createContext();
 
 function App() {
   const [email, setEmail] = useState();
-  const [loader, setLoader] = useState(false);
+  const [dataList, setDataList] = useState([]);
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ email, setEmail, loader, setLoader }}>
+      <AppContext.Provider value={{ email, setEmail, dataList, setDataList }}>
         <BrowserRouter>
           <Routes>
             <Route index element={<EmailForm />} />

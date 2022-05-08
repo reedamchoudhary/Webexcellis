@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, listUsers } from "../async/user.async";
 import { UPDATE_DATA_BASE } from "../constants/path";
@@ -15,9 +15,10 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { AppContext } from "../App";
 
 const Dashboard = () => {
-  const [dataList, setDataList] = useState([]);
+  const { dataList, setDataList } = useContext(AppContext);
   const [tableHeads] = useState(["First name", "Last name", "Email", "Action"]);
   const navigate = useNavigate();
   useEffect(() => {
