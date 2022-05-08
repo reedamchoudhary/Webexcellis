@@ -11,12 +11,25 @@ export const API = axios.create({
   header: defaultHeaders,
 });
 
+API.interceptors.request.use(
+  function (config) {
+    document.body.classList.add("loading-indicator");
+
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+
 API.interceptors.response.use(
-  async (response) => {
+  function (response) {
+    document.body.classList.remove("loading-indicator");
+
     return response;
   },
-  (error) => {
-    if (error?.response) return error;
+  function (error) {
+    document.body.classList.remove("loading-indicator");
     return Promise.reject(error);
   }
 );
