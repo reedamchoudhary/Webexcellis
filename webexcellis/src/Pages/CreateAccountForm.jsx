@@ -12,11 +12,11 @@ const CreateAccountForm = () => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    let currentData = dataList.filter((item) => item.id === id)[0];
+    let currentData = dataList?.filter((item) => item.id === id)[0];
     if (id) {
-      setEmail(currentData.email);
-      setFirstName(currentData.firstName);
-      setLastName(currentData.lastName);
+      setEmail(currentData?.email);
+      setFirstName(currentData?.firstName);
+      setLastName(currentData?.lastName);
     }
   }, [id]);
 
