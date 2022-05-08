@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, listUsers } from "../async/user.async";
-import { UPDATE_DATA_BASE } from "../constants/path";
+import { EMAIL_VERIFICATION, UPDATE_DATA_BASE } from "../constants/path";
 import {
   Button,
   ChakraProvider,
@@ -73,6 +73,12 @@ const Dashboard = () => {
             </Tbody>
           </Table>
         </TableContainer>
+        <Button
+          margin={"50px 0px"}
+          onClick={() => navigate(EMAIL_VERIFICATION)}
+        >
+          Add User
+        </Button>
       </Flex>
     </ChakraProvider>
   );
