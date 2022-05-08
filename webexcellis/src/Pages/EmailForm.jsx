@@ -7,8 +7,6 @@ const EmailForm = () => {
   const { email, setEmail } = useContext(AppContext);
   const navigate = useNavigate();
 
-  console.log(email);
-
   const submitHandler = (e) => {
     e.preventDefault();
     navigate(Path.CREATE_ACCOUNT);

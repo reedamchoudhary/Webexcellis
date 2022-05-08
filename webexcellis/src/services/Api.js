@@ -13,15 +13,10 @@ export const API = axios.create({
 
 API.interceptors.response.use(
   async (response) => {
-    console.log(response);
     return response;
   },
   (error) => {
-    console.log("error=", error);
-    if (error?.response) {
-      toast.error(error);
-      return error;
-    }
+    if (error?.response) return error;
     return Promise.reject(error);
   }
 );
