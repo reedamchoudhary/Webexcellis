@@ -40,16 +40,6 @@ const EmailForm = () => {
         </div>
       </div>
     </div>
-
-    // <form onSubmit={submitHandler}>
-    //   <h1>Enter your email</h1>
-    //   <input
-    //     type="email"
-    //     value={email}
-    //     onChange={(e) => setEmail(e.target.value)}
-    //   />
-    //   <button>Next</button>
-    // </form>
   );
 };
 
